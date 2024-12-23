@@ -7,12 +7,14 @@ info:
 servers:
   - url: https://user-authorization.swagger.io/api/v1
 tags:
-  - name: witch
-    description: Everything about witches
-  - name: recipe
-    description: Everything about witches recipes
-  - name: ingredient
-    description: Everything about ingredients
-  - name: potion
-    description: Everything about potions
+  - name: users
+    description: Everything about users
+  - name: persons
+    description: Everything about witches user person
+  - name: user_roles
+    description: Everything about user_roles
+  - name: permissions
+    description: Everything about permissions
+  - role_permissions:
+    description: Everything about role permissions
 paths:
