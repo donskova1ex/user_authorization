@@ -1,0 +1,18 @@
+openapi: 3.0.0
+info:
+  title: user_authorization service - OpenAPI 3.0
+  description: |-
+    Сервис авторизации пользователей
+  version: 1.0.0
+servers:
+  - url: https://user-authorization.swagger.io/api/v1
+tags:
+  - name: witch
+    description: Everything about witches
+  - name: recipe
+    description: Everything about witches recipes
+  - name: ingredient
+    description: Everything about ingredients
+  - name: potion
+    description: Everything about potions
+paths:
