@@ -9,5 +9,5 @@ CREATE TABLE IF NOT EXISTS role_permissions (
 
 -- +goose Down
 -- +goose StatementBegin
-SELECT 'down SQL query';
+drop table if exists role_permissions;
 -- +goose StatementEnd

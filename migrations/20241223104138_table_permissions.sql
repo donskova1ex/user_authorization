@@ -9,5 +9,5 @@ CREATE TABLE IF NOT EXITS permissions (
 
 -- +goose Down
 -- +goose StatementBegin
-SELECT 'down SQL query';
+drop table if exists permissions;
 -- +goose StatementEnd
