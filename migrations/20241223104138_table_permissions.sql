@@ -1,6 +1,10 @@
 -- +goose Up
 -- +goose StatementBegin
-SELECT 'up SQL query';
+CREATE TABLE IF NOT EXITS permissions (
+    id SERIAL PRIMARY KEY,
+    uuid VARCHAR(50) unique,
+    permissions_name VARCHAR(50)
+);
 -- +goose StatementEnd
 
 -- +goose Down
