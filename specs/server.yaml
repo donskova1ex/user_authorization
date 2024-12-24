@@ -9,12 +9,68 @@ servers:
 tags:
   - name: users
     description: Everything about users
-  - name: persons
-    description: Everything about witches user person
-  - name: user_roles
-    description: Everything about user_roles
-  - name: permissions
-    description: Everything about permissions
-  - role_permissions:
-    description: Everything about role permissions
 paths:
+  /users:
+    get:
+      tags:
+        - users
+      summary: Users list
+      description: users list
+      operationId: usersList
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  - $ref: "#/components/schemas/user"
+        '204':
+          description: empty list
+          content:
+            application/json:
+              schema:
+                type: array
+  /users/{uuid}:
+    get:
+      tags:
+        - users
+      summary: Find user by uuid
+      description: returns a single user
+      operationId: getUserByUUID
+      parameters:
+        - name: uuid
+          in: path
+          description: uuid of user to return
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/user"
+        '400':
+          description: invalid uuid supplied
+        '404':
+          description: user not found
+
+
+
+components:
+  schemas:
+    user:
+      required:
+        - uuid
+        - user_name
+      type: object
+      properties:
+        uuid:
+          type: string
+          example: 123123
+        user_name:
+          type: string
+          example: ivanov.i
