@@ -9,6 +9,8 @@ servers:
 tags:
   - name: users
     description: Everything about users
+  - name: persons
+    description: Everything about user person
 paths:
   /users:
     get:
@@ -57,8 +59,53 @@ paths:
           description: invalid uuid supplied
         '404':
           description: user not found
-
-
+  /persons:
+    get:
+      tags:
+        - persons
+      summary: Persons list
+      description: persons list
+      operationId: personsList
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  - $ref: "#/components/schemas/person"
+        '204':
+          description: empty list
+          content:
+            application/json:
+              schema:
+                type: array
+  /persons/{uuid}:
+    get:
+      tags:
+        - persons
+      summary: Find person by uuid
+      description: returns a single person
+      operationId: getPersonByUUID
+      parameters:
+        - name: uuid
+          in: path
+          description: uuid of person to return
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/person"
+        '400':
+          description: invalid uuid supplied
+        '404':
+          description: person not found
 
 components:
   schemas:
@@ -74,3 +121,45 @@ components:
         user_name:
           type: string
           example: ivanov.i
+    person:
+      required:
+        - uuid
+        - first_name
+        - middle_name
+        - last_name
+        - email
+        - address
+        - age
+        - gender
+        - date_of_birth
+      type: object
+      properties:
+        uuid:
+          type: string
+          example: 123456
+        first_name:
+          type: string
+          example: Ivan
+        middle_name:
+          type: string
+          example: Ivanovich
+        last_name:
+          type: string
+          example: Ivanov
+        email:
+          type: string
+          example: ivanov.i@example.exp
+        address:
+          type: string
+          example: Bashkortostan Republic, c. Ufa, str. Street, h. 21, app. 16
+        age:
+          type: integer
+          example: 25
+        gender:
+          type: string
+          example: male
+        date_of_birth:
+          type: string
+          example: 14.11.1975
+
+
