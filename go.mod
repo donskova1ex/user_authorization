@@ -1,4 +1,4 @@
-module github.com/donskova1ex/mylearningproject
+module github.com/donskova1ex/user_authorization
 
 go 1.23.0
 

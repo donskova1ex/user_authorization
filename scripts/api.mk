@@ -1,4 +1,4 @@
-PROJECT?=github.com/donskova1ex/mylearningproject
+PROJECT?=github.com/donskova1ex/user_authorization
 API_NAME?=api
 VERSION?=0.0.1
 CONTAINER_NAME?=docker.io/donskova1ex/${API_NAME}
