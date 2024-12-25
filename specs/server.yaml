@@ -11,6 +11,10 @@ tags:
     description: Everything about users
   - name: persons
     description: Everything about user person
+  - name: roles
+    description: Everything about roles
+  - name: permission
+    description: Everything about permissions
 paths:
   /users:
     get:
@@ -205,8 +209,201 @@ paths:
         '400':
           description: invalid uuid supplied
         '404':
-          description: user not found
-
+          description: person not found
+  /roles:
+    get:
+      tags:
+        - roles
+      summary: Roles list
+      description: roles list
+      operationId: rolesList
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  - $ref: "#/components/schemas/role"
+        '204':
+          description: empty list
+          content:
+            application/json:
+              schema:
+                type: array
+  /roles/{uuid}:
+    get:
+      tags:
+        - roles
+      summary: Find role by uuid
+      description: returns a single role
+      operationId: getRoleByUUID
+      parameters:
+        - name: uuid
+          in: path
+          description: uuid of role to return
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/role"
+        '400':
+          description: invalid uuid supplied
+        '404':
+          description: role not found
+    put:
+      tags:
+        - roles
+      summary: change role by uuid
+      description: change a single role
+      operationId: changeRoleByUUUID
+      parameters:
+        - name: uuid
+          in: path
+          description: uuid of changing role
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: update role
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/role"
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/role"
+        '400':
+          description: invalid uuid supplied
+        '404':
+          description: role not found
+    delete:
+      tags:
+        - roles
+      summary: delete role by uuid
+      description: delete a single role
+      operationId: deleteRoleByUUUID
+      parameters:
+        - name: uuid
+          in: path
+          description: uuid of delete role
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+        '400':
+          description: invalid uuid supplied
+        '404':
+          description: role not found
+  /permissions:
+    get:
+      tags:
+        - permissions
+      summary: Permissions list
+      description: permissions list
+      operationId: permissionsList
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  - $ref: "#/components/schemas/permission"
+        '204':
+          description: empty list
+          content:
+            application/json:
+              schema:
+                type: array
+  /permissions/{uuid}:
+    get:
+      tags:
+        - permissions
+      summary: Find permission by uuid
+      description: returns a single permission
+      operationId: getPermissionByUUID
+      parameters:
+        - name: uuid
+          in: path
+          description: uuid of permission to return
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/permission"
+        '400':
+          description: invalid uuid supplied
+        '404':
+          description: permission not found
+    put:
+      tags:
+        - permissions
+      summary: change permission by uuid
+      description: change a single permission
+      operationId: changePermissionByUUUID
+      parameters:
+        - name: uuid
+          in: path
+          description: uuid of changing permission
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: update permission
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/permission"
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/permission"
+        '400':
+          description: invalid uuid supplied
+        '404':
+          description: permission not found
+    delete:
+      tags:
+        - permissions
+      summary: delete permission by uuid
+      description: delete a single permission
+      operationId: deletePermissionByUUUID
+      parameters:
+        - name: uuid
+          in: path
+          description: uuid of delete permission
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+        '400':
+          description: invalid uuid supplied
+        '404':
+          description: permission not found
 components:
   schemas:
     user:
@@ -220,6 +417,27 @@ components:
         user_name:
           type: string
           example: ivanov.i
+    role:
+      required:
+        - role_name
+      type: object
+      properties:
+        uuid:
+          type: string
+          example: 123123
+        user_name:
+          type: string
+          example: loan manager
+    permission:
+      required:
+        - permissions_name
+      properties:
+        uuid:
+          type: string
+          example: 123123
+        permissions_name:
+          type: string
+          example: loan creating
     person:
       required:
         - first_name
