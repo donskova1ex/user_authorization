@@ -476,6 +476,6 @@ components:
           example: male
         date_of_birth:
           type: string
-          example: 14.11.1975
+          example: 14.11.1974
 
 
