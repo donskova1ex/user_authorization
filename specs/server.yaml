@@ -31,13 +31,9 @@ paths:
               schema:
                 type: array
                 items:
-                  - $ref: "#/components/schemas/user"
+                  $ref: "#/components/schemas/user"
         '204':
           description: empty list
-          content:
-            application/json:
-              schema:
-                type: array
   /users/{uuid}:
     get:
       tags:
@@ -128,13 +124,9 @@ paths:
               schema:
                 type: array
                 items:
-                  - $ref: "#/components/schemas/person"
+                  $ref: "#/components/schemas/person"
         '204':
           description: empty list
-          content:
-            application/json:
-              schema:
-                type: array
   /persons/{uuid}:
     get:
       tags:
@@ -225,13 +217,9 @@ paths:
               schema:
                 type: array
                 items:
-                  - $ref: "#/components/schemas/role"
+                  $ref: "#/components/schemas/role"
         '204':
           description: empty list
-          content:
-            application/json:
-              schema:
-                type: array
   /roles/{uuid}:
     get:
       tags:
@@ -322,13 +310,9 @@ paths:
               schema:
                 type: array
                 items:
-                  - $ref: "#/components/schemas/permission"
+                  $ref: "#/components/schemas/permission"
         '204':
           description: empty list
-          content:
-            application/json:
-              schema:
-                type: array
   /permissions/{uuid}:
     get:
       tags:

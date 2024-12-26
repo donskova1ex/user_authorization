@@ -1,0 +1,505 @@
+openapi: 3.0.0
+info:
+  description: Сервис авторизации пользователей
+  title: user_authorization service - OpenAPI 3.0
+  version: 1.0.0
+servers:
+- url: https://user-authorization.swagger.io/api/v1
+tags:
+- description: Everything about users
+  name: users
+- description: Everything about user person
+  name: persons
+- description: Everything about roles
+  name: roles
+- description: Everything about permissions
+  name: permission
+paths:
+  /users:
+    get:
+      description: users list
+      operationId: usersList
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/user'
+                type: array
+          description: successful operation
+        "204":
+          description: empty list
+      summary: Users list
+      tags:
+      - users
+  /users/{uuid}:
+    delete:
+      description: delete a single user
+      operationId: deleteUserByUUUID
+      parameters:
+      - description: uuid of delete user
+        explode: false
+        in: path
+        name: uuid
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          description: successful operation
+        "400":
+          description: invalid uuid supplied
+        "404":
+          description: user not found
+      summary: delete user by uuid
+      tags:
+      - users
+    get:
+      description: returns a single user
+      operationId: getUserByUUID
+      parameters:
+      - description: uuid of user to return
+        explode: false
+        in: path
+        name: uuid
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/user'
+          description: successful operation
+        "400":
+          description: user not changed
+        "404":
+          description: user not found
+      summary: Find user by uuid
+      tags:
+      - users
+    put:
+      description: change a single user
+      operationId: changeUserByUUUID
+      parameters:
+      - description: uuid of changing user
+        explode: false
+        in: path
+        name: uuid
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/user'
+        description: update user
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/user'
+          description: successful operation
+        "400":
+          description: invalid uuid supplied
+        "404":
+          description: user not found
+      summary: change user by uuid
+      tags:
+      - users
+  /persons:
+    get:
+      description: persons list
+      operationId: personsList
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/person'
+                type: array
+          description: successful operation
+        "204":
+          description: empty list
+      summary: Persons list
+      tags:
+      - persons
+  /persons/{uuid}:
+    delete:
+      description: delete a single person
+      operationId: deletePersonByUUUID
+      parameters:
+      - description: uuid of delete person
+        explode: false
+        in: path
+        name: uuid
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          description: successful operation
+        "400":
+          description: invalid uuid supplied
+        "404":
+          description: person not found
+      summary: delete person by uuid
+      tags:
+      - persons
+    get:
+      description: returns a single person
+      operationId: getPersonByUUID
+      parameters:
+      - description: uuid of person to return
+        explode: false
+        in: path
+        name: uuid
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/person'
+          description: successful operation
+        "400":
+          description: invalid uuid supplied
+        "404":
+          description: person not found
+      summary: Find person by uuid
+      tags:
+      - persons
+    put:
+      description: change a single person
+      operationId: changePersonByUUUID
+      parameters:
+      - description: uuid of changing person
+        explode: false
+        in: path
+        name: uuid
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/person'
+        description: update person
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/person'
+          description: successful operation
+        "400":
+          description: invalid uuid supplied
+        "404":
+          description: person not found
+      summary: change person by uuid
+      tags:
+      - persons
+  /roles:
+    get:
+      description: roles list
+      operationId: rolesList
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/role'
+                type: array
+          description: successful operation
+        "204":
+          description: empty list
+      summary: Roles list
+      tags:
+      - roles
+  /roles/{uuid}:
+    delete:
+      description: delete a single role
+      operationId: deleteRoleByUUUID
+      parameters:
+      - description: uuid of delete role
+        explode: false
+        in: path
+        name: uuid
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          description: successful operation
+        "400":
+          description: invalid uuid supplied
+        "404":
+          description: role not found
+      summary: delete role by uuid
+      tags:
+      - roles
+    get:
+      description: returns a single role
+      operationId: getRoleByUUID
+      parameters:
+      - description: uuid of role to return
+        explode: false
+        in: path
+        name: uuid
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/role'
+          description: successful operation
+        "400":
+          description: invalid uuid supplied
+        "404":
+          description: role not found
+      summary: Find role by uuid
+      tags:
+      - roles
+    put:
+      description: change a single role
+      operationId: changeRoleByUUUID
+      parameters:
+      - description: uuid of changing role
+        explode: false
+        in: path
+        name: uuid
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/role'
+        description: update role
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/role'
+          description: successful operation
+        "400":
+          description: invalid uuid supplied
+        "404":
+          description: role not found
+      summary: change role by uuid
+      tags:
+      - roles
+  /permissions:
+    get:
+      description: permissions list
+      operationId: permissionsList
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/permission'
+                type: array
+          description: successful operation
+        "204":
+          description: empty list
+      summary: Permissions list
+      tags:
+      - permissions
+  /permissions/{uuid}:
+    delete:
+      description: delete a single permission
+      operationId: deletePermissionByUUUID
+      parameters:
+      - description: uuid of delete permission
+        explode: false
+        in: path
+        name: uuid
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          description: successful operation
+        "400":
+          description: invalid uuid supplied
+        "404":
+          description: permission not found
+      summary: delete permission by uuid
+      tags:
+      - permissions
+    get:
+      description: returns a single permission
+      operationId: getPermissionByUUID
+      parameters:
+      - description: uuid of permission to return
+        explode: false
+        in: path
+        name: uuid
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/permission'
+          description: successful operation
+        "400":
+          description: invalid uuid supplied
+        "404":
+          description: permission not found
+      summary: Find permission by uuid
+      tags:
+      - permissions
+    put:
+      description: change a single permission
+      operationId: changePermissionByUUUID
+      parameters:
+      - description: uuid of changing permission
+        explode: false
+        in: path
+        name: uuid
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/permission'
+        description: update permission
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/permission'
+          description: successful operation
+        "400":
+          description: invalid uuid supplied
+        "404":
+          description: permission not found
+      summary: change permission by uuid
+      tags:
+      - permissions
+components:
+  schemas:
+    user:
+      example:
+        user_name: ivanov.i
+        uuid: "123123"
+      properties:
+        uuid:
+          example: "123123"
+          type: string
+        user_name:
+          example: ivanov.i
+          type: string
+      required:
+      - user_name
+      type: object
+    role:
+      example:
+        user_name: loan manager
+        uuid: "123123"
+      properties:
+        uuid:
+          example: "123123"
+          type: string
+        user_name:
+          example: loan manager
+          type: string
+      required:
+      - role_name
+      type: object
+    permission:
+      example:
+        permissions_name: loan creating
+        uuid: "123123"
+      properties:
+        uuid:
+          example: "123123"
+          type: string
+        permissions_name:
+          example: loan creating
+          type: string
+      required:
+      - permissions_name
+    person:
+      example:
+        address: "Bashkortostan Republic, c. Ufa, str. Street, h. 21, app. 16"
+        gender: male
+        date_of_birth: 14.11.1974
+        last_name: Ivanov
+        middle_name: Ivanovich
+        uuid: "123456"
+        first_name: Ivan
+        email: ivanov.i@example.exp
+        age: 25
+      properties:
+        uuid:
+          example: "123456"
+          type: string
+        first_name:
+          example: Ivan
+          type: string
+        middle_name:
+          example: Ivanovich
+          type: string
+        last_name:
+          example: Ivanov
+          type: string
+        email:
+          example: ivanov.i@example.exp
+          type: string
+        address:
+          example: "Bashkortostan Republic, c. Ufa, str. Street, h. 21, app. 16"
+          type: string
+        age:
+          example: 25
+          type: integer
+        gender:
+          example: male
+          type: string
+        date_of_birth:
+          example: 14.11.1974
+          type: string
+      required:
+      - address
+      - age
+      - date_of_birth
+      - email
+      - first_name
+      - gender
+      - last_name
+      - middle_name
+      type: object
