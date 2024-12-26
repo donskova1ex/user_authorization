@@ -57,7 +57,7 @@ func (p *PermissionsProstgres) PermissionsAll(ctx context.Context) ([]*domain.Pe
 func (p *PermissionsProstgres) PermissionByUUID(ctx context.Context, uuid string) (*domain.Permission, error) {
 	var permission = &domain.Permission{}
 	query := "SELECT id, uuid, name FROM permissions WHERE uuid=$1"
-	err := p.db.GetContext(ctx, &permission, query, uuid)
+	err := p.db.GetContext(ctx, permission, query, uuid)
 	if errors.Is(err, sql.ErrNoRows) {
 		return nil, fmt.Errorf("%w with uuid [%s]", internal.ErrNotFound, uuid)
 	}
@@ -85,6 +85,9 @@ func (p *PermissionsProstgres) UpdatePermission(ctx context.Context, permission 
 	_, err := p.db.ExecContext(ctx, query, permission.Name, permission.UUID)
 	if errors.Is(err, sql.ErrNoRows) {
 		return nil, fmt.Errorf("%w with uuid [%s]", internal.ErrNotFound, permission.UUID)
+	}
+	if err != nil {
+		return nil, fmt.Errorf("%w with uuid [%s]", internal.ErrReadRows, permission.UUID)
 	}
 	return permission, nil
 }
