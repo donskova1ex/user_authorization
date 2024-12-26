@@ -3,7 +3,7 @@
 CREATE TABLE if not exists roles (
     id SERIAL PRIMARY KEY,
     uuid VARCHAR(50) unique,
-    role_name VARCHAR(50)
+    name VARCHAR(50)
     ) ;
 -- +goose StatementEnd
 

@@ -3,9 +3,9 @@
 CREATE TABLE IF NOT EXISTS persons (
     id SERIAL PRIMARY KEY,
     uuid VARCHAR(50) unique,
-    first_name VARCHAR(50),
-    middle_name VARCHAR(50),
-    last_name VARCHAR(50),
+    firstname VARCHAR(50),
+    middlename VARCHAR(50),
+    lastname VARCHAR(50),
     email VARCHAR(50),
     address VARCHAR(150),
     age INTEGER,

@@ -3,7 +3,7 @@
 CREATE TABLE if not exists users (
     id SERIAL PRIMARY KEY,
     uuid VARCHAR(50) unique,
-    user_name VARCHAR(64),
+    name VARCHAR(64),
     password_hash VARCHAR(250),
     password_salt VARCHAR(100)
 ) ;
